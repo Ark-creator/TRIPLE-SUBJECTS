@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const Token = require('../models/Token'); // Token model for storing verification tokens
 const route = require('express').Router();
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 const crypto = require('crypto'); // For generating token
 const nodemailer = require('nodemailer'); // For sending email
 const mongoose = require('mongoose'); // Ensure mongoose is imported
@@ -22,8 +22,8 @@ class Register {
     }
 
     // Hash the password
-    const salt = await bcrypt.genSalt();
-    const hashed = await bcrypt.hash(params.password, salt);
+    const salt = await bcryptjs.genSalt();
+    const hashed = await bcryptjs.hash(params.password, salt);
 
     // Create the new user with a `isVerified` flag
     const user = await User.create({
@@ -123,7 +123,7 @@ async login(params) {
     console.log('Stored hashed password:', user.password);
 
     // Compare the password entered with the hashed password
-    const compare = await bcrypt.compare(params.password, user.password);
+    const compare = await bcryptjs.compare(params.password, user.password);
 
     if (compare) {
       if (user.isVerified) {

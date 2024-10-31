@@ -10,13 +10,14 @@
     "seed:packages": "node ./devTools/seeders/packageseeder.js",
     "seed:services": "node ./devTools/seeders/serviceseeder.js",
     "seed:tables": "npm-run-all seed:addons seed:services seed:packages",
-    "fresh": "node ./devTools/freshMigrate.js"
+    "fresh": "node ./devTools/freshMigrate.js",
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "csv-parser": "^3.0.0",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",

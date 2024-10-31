@@ -1,5 +1,5 @@
 const Admin = require('../models/Admin');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 class AdminAuth {
   async login(params) {
@@ -10,7 +10,7 @@ class AdminAuth {
       admin = await Admin.findOne({ email: params.email });
     }
 
-    if (admin && await bcrypt.compare(params.password, admin.password)) {
+    if (admin && await bcryptjs.compare(params.password, admin.password)) {
       // Login success
       return true;
     } 

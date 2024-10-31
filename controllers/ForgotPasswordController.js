@@ -1,7 +1,7 @@
 const User = require('../models/User');
 const nodemailer = require('nodemailer');
 const crypto = require('crypto');
-const bcrypt = require('bcrypt');
+const bcryptjs = require('bcryptjs');
 
 // Generates random token for reset password
 const generateToken = () => {
@@ -93,8 +93,8 @@ exports.updatePassword = async (req, res) => {
         }
 
         // Hash the new password
-        const salt = await bcrypt.genSalt(10);
-        const hashedPassword = await bcrypt.hash(password, salt);
+        const salt = await bcryptjs.genSalt(10);
+        const hashedPassword = await bcryptjs.hash(password, salt);
 
         // Update the user with the new password and clear reset token and expiration
         user.password = hashedPassword;
