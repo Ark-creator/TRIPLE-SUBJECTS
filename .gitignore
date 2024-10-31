@@ -3,4 +3,3 @@ img_uploads/**/*
 !receipts/
 !uploads/
 !DONTDELETE
-node_modules/
